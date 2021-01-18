@@ -26,7 +26,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -89,7 +91,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/jquery/dist/jquery.js"]
           }
         },
         "lint": {
@@ -120,5 +122,14 @@
       }
     }
   },
-  "defaultProject": "angularprojectscope"
+  "defaultProject": "angularprojectscope",
+  "cli": {
+    "analytics": "8567b227-8430-4147-b80e-382966aa51e8"
+  }
+//  "assets": [
+//    "assets",
+//    "favicon.ico",
+//    "META-INF",
+//    "WEB-INF"
+//  ]
 }

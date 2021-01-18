@@ -1,0 +1,157 @@
+<div class="project" style="width: 100%; padding: 20px;">
+<!--  <div style="display: flex; justify-content: space-between;margin: 10px;">-->
+<!--    <span *ngIf="userName" style="color: darkgreen;">{{userName}}</span>-->
+<!--    <span *ngIf="surname" style="color: darkgreen;">{{surname}}</span>-->
+<!--    <button (click)="logout()" style="width: 80px; height: 40px;padding: 5px;margin-top: 10px;">logout</button>-->
+<!--  </div>-->
+  <div *ngIf=retrievedImage>
+    <img [src]="retrievedImage">
+    <img [src]="imgUrl">
+  </div>
+
+  <div *ngIf="leader" id="main">
+    <div id="m1">
+      <div style="display: flex; justify-content: space-between">
+        <img src="./assets/user-icon-jpg-6.jpg" width="70" height="70">
+        <div>
+          <p>{{userName}}</p>
+          <p>{{surname}}</p>
+        </div>
+      </div>
+      <div>
+        <img src="./assets/projects.png" width="20" height="20">
+        <button (click)="showProjectsOfMembers(+userId)">Projects</button>
+      </div>
+      <div>
+        <img src="./assets/users.png" width="20" height="20">
+        <button (click)="getAllUsersOfMemberType()">Users</button>
+      </div>
+      <div>
+        <img src="./assets/logout.png" width="20" height="20">
+        <button (click)="logout()">Log out</button>
+      </div>
+    </div>
+
+    <div *ngIf="userElShow" id="m2">
+      <h1 id="m">All Team_Members</h1>
+      <table>
+        <th class="u">User</th>
+        <th class="u">Email</th>
+        <tr *ngFor="let u of users">
+          <td>
+            <img src="./assets/user-icon-jpg-6.jpg" width="50" height="50">
+            <span>{{u.userName+" "+u.surname}}</span>
+          </td>
+          <td>{{u.email}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="projecElShow" id="m3">
+      <h2>Projects</h2>
+
+      <div>
+        <a [routerLink]="['/addProject']"  [queryParams]="{'id': +userId}" id="n">New</a>
+<!--        <button (click)="enable()">Edit</button> &nbsp;-->
+        <button (click)="delete()" id="d1">Delete</button>
+        <input type="text" placeholder="search" id="s">
+      </div>
+      <div>
+        <span id="f">Filter projects </span><span>from</span><input type="date"><span>to</span><input type="date">
+      </div>
+      <div>
+        <table border="1" cellpadding="2">
+          <th class="u"></th>
+          <th class="u">Project Name</th>
+          <th class="u">Date</th>
+          <th class="u">Deadline</th>
+          <th class="u">Members</th>
+          <th class="u">Hours</th>
+          <tr *ngFor="let p of projects;let i = index" (click)="setClickedRow(i)"  [class.active]="i == selectedRow">
+            <td ><input type="checkbox" (click)="toggleSelection($event, i)"
+                        [checked]="checkboxes[i]" class="project" [id]="p.projectId"></td>
+            <td><input type="text" #focus [disabled]='toggleButton'  [(ngModel)]="p.projectName" name="projectName" ></td>
+            <td ><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.date" name="date"></td>
+            <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.deadline" name="deadliene"></td>
+            <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.members" name="members"></td>
+            <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.hours" name="hours"></td>
+            <!--        <td> <button (click)="addRow(i)">Add</button></td>-->
+            <!--        <td *ngIf="leader"><button (click)="deleteProject(p.projectId, +userId)">X</button></td>-->
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+
+
+<!--  <div *ngIf="projectList">-->
+<!--    <h1>My Projects</h1>-->
+<!--    <table border="1">-->
+<!--      <th>Project Name</th>-->
+<!--      <th>Date</th>-->
+<!--      <th>Deadline</th>-->
+<!--      <tr *ngFor="let p of projectList">-->
+<!--        <td>{{p.projectName}}</td>-->
+<!--        <td>{{p.date}}</td>-->
+<!--        <td>{{p.deadline}}</td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </div>-->
+
+
+<!--  <div *ngIf="leader">-->
+<!--    <h1>Add new Project</h1>-->
+<!--    <form  (ngSubmit)="addProject(projectForm.value)" #projectForm="ngForm" novalidate >-->
+<!--      <label for="projectName">Name: </label>-->
+<!--      <input type="text" id="projectName" name="projectName"  #ngProjectName="ngModel" ngModel required placeholder="input product name" />-->
+
+<!--      <br><label for="date">Date: </label>-->
+<!--      <input type="text" id="date" name="date"  #ngDate="ngModel" ngModel required placeholder="input project date as 1/2/2021" />-->
+
+<!--      <br><label for="deadline">Deadline: </label>-->
+<!--      <input type="text" id="deadline" name="deadline" #ngDeadline="ngModel" ngModel required placeholder="input project deadline as 1/2/2021" />-->
+
+<!--      <br><label for="userIds">Members: </label>-->
+<!--      <input type="text" id="userIds" name="userIds" #ngUserIds="ngModel" ngModel required placeholder="input developer Ids as 1,2,3" />-->
+
+<!--      <br><input type="submit" value="submit" [disabled]="!projectForm.form.valid" />-->
+<!--    </form>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="projects">-->
+<!--    <h2>User Projects List</h2>-->
+<!--    <div>-->
+<!--      <button (click)="enable()">Edit</button> &nbsp;-->
+<!--      <button (click)="delete()">Delete</button>-->
+<!--    </div>-->
+<!--    <table border="1" cellpadding="2">-->
+<!--      <th></th>-->
+<!--      <th>Project Name</th>-->
+<!--      <th>Date</th>-->
+<!--      <th>Deadline</th>-->
+<!--      <th>Members</th>-->
+<!--      <th>Hours</th>-->
+
+<!--&lt;!&ndash;      <th *ngIf="leader">Delete Project</th>&ndash;&gt;-->
+<!--&lt;!&ndash;      <th *ngIf="leader">New Project</th>&ndash;&gt;-->
+
+<!--&lt;!&ndash;      <th>Show Project Details</th>&ndash;&gt;-->
+<!--      <tr *ngFor="let p of projects;let i = index" (click)="setClickedRow(i)"  [class.active]="i == selectedRow">-->
+<!--        <td ><input type="checkbox" (click)="toggleSelection($event, i)"-->
+<!--                    [checked]="checkboxes[i]" class="project" [id]="p.projectId"></td>-->
+<!--        <td><input type="text" #focus [disabled]='toggleButton'  [(ngModel)]="p.projectName" name="projectName" ></td>-->
+<!--        <td ><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.date" name="date"></td>-->
+<!--        <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.deadline" name="deadliene"></td>-->
+<!--        <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.members" name="members"></td>-->
+<!--        <td><input type="text" #focus [disabled]='toggleButton' [(ngModel)]="p.hours" name="hours"></td>-->
+<!--&lt;!&ndash;        <td> <button (click)="addRow(i)">Add</button></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td *ngIf="leader"><button (click)="deleteProject(p.projectId, +userId)">X</button></td>&ndash;&gt;-->
+<!--&lt;!&ndash;        <td><a [routerLink]="['/orders']" >Show Ordered Products</a></td>&ndash;&gt;-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </div>-->
+
+</div>

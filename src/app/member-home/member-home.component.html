@@ -1,0 +1,79 @@
+<!--<div *ngIf=retrievedImage xmlns:queryParams="http://www.w3.org/1999/xhtml" xmlns:userId="http://www.w3.org/1999/xhtml"-->
+<!--     xmlns:queryParams="http://www.w3.org/1999/xhtml">-->
+<!--  <img [src]="retrievedImage">-->
+<!--</div>-->
+<div>
+  <img [src]="imgUrl">
+</div>
+
+<div *ngIf="member" id="main">
+  <div id="m1">
+    <div style="display: flex; justify-content: space-between">
+      <img src="./assets/user-icon-jpg-6.jpg" width="70" height="70">
+      <div>
+        <p>{{userName}}</p>
+        <p>{{surname}}</p>
+      </div>
+    </div>
+    <div>
+      <img src="./assets/projects.png" width="20" height="20">
+      <button (click)="showProjects(+userId)">Projects</button>
+    </div>
+    <div>
+      <img src="./assets/log.jpg" width="20" height="20">
+      <button (click)="getAllLogs()">Logs</button>
+    </div>
+    <div>
+      <img src="./assets/logout.png" width="20" height="20">
+      <button (click)="logout()">Log out</button>
+    </div>
+  </div>
+
+  <div *ngIf="logElShow" id="m2">
+
+    <h1 id="m">All Team_Members</h1>
+    <table>
+      <th class="u">StartDateTime</th>
+      <th class="u">EndDateTime</th>
+      <th class="u">Hours</th>
+      <th class="u">Start Log</th>
+      <th class="u">End Log</th>
+      <tr *ngFor="let l of logs">
+        <td>
+<!--          <img src="./assets/black-profile.png" width="50" height="50">-->
+          <span>{{l.startDateTime}}</span>
+        </td>
+        <td>{{l.endDateTime}}</td>
+        <td>{{l.hours}}</td>
+        <td><button (click)="startLog(l.logId)">Start Log</button></td>
+        <td><button (click)="endLog(l.logId)">End Log</button></td>
+      </tr>
+    </table>
+    <button *ngIf="emptyLog">Empty log</button>
+  </div>
+
+  <div *ngIf="projecElShow" id="m3">
+    <h2>My <span id="ss">Projects</span></h2>
+    <div>
+      <table border="1" cellpadding="2">
+        <th class="u">Project Name</th>
+        <th class="u">Date</th>
+        <th class="u">Deadline</th>
+        <th class="u">Members</th>
+        <th class="u">Hours</th>
+        <th>Create or Update log</th>
+
+        <tr *ngFor="let p of projectList">
+          <td>{{p.projectName}}</td>
+          <td>{{p.date}}</td>
+          <td>{{p.deadline}}</td>
+          <td>{{p.members}}</td>
+          <td>{{p.hours}}</td>
+          <td><a [routerLink]="['/log']"  [queryParams]="{'userId': userId, 'projectId': p.projectId}">Create new or Update existing Log</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+

@@ -1,0 +1,10 @@
+#af{
+  display: flex;
+  flex-direction: column;
+}
+#ad{
+  width: 450px;
+}
+input{
+ width: 200px;
+}

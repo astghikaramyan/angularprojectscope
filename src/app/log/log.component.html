@@ -1,0 +1,7 @@
+<div *ngIf="member" id="ad">
+  <h1>Add new Log for Project with {{projectId}}</h1>
+  <button (click)="addLog(+userId, +projectId)">Create Log</button>
+  <span *ngIf="addingLog">Log was created successfully</span>
+  <h1>Previous page</h1>
+  <button (click)="goBack()">go back</button>
+</div>

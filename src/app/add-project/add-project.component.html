@@ -1,0 +1,22 @@
+<div *ngIf="leader" id="ad">
+  <h1>Add new Project</h1>
+  <form  (ngSubmit)="addProject(projectForm.value)" id = "af"  #projectForm="ngForm" novalidate >
+    <label for="projectName">Name: </label>
+    <input type="text" id="projectName" name="projectName"  #ngProjectName="ngModel" ngModel required placeholder="input product name" />
+
+    <br><label for="date">Date: </label>
+    <input type="text" id="date" name="date"  #ngDate="ngModel" ngModel required placeholder="input project date as 1/2/2021" />
+
+    <br><label for="deadline">Deadline: </label>
+    <input type="text" id="deadline" name="deadline" #ngDeadline="ngModel" ngModel required placeholder="input project deadline as 1/2/2021" />
+
+    <br><label for="userIds">Members: </label>
+    <input type="text" id="userIds" name="userIds" #ngUserIds="ngModel" ngModel required placeholder="input developer Ids as 1,2,3" />
+
+    <br><input type="submit" value="submit" [disabled]="!projectForm.form.valid" />
+  </form>
+  <span *ngIf="addingProject">Project was added successfully</span>
+  <h1>Previous page</h1>
+
+  <button (click)="goBack()">go back</button>
+</div>

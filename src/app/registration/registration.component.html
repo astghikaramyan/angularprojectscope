@@ -1,0 +1,46 @@
+<div class="reg" style="margin: 0 auto;padding: 20px;">
+
+  <div class="reg1" style="margin: 0 auto; width: 900px; display: flex; justify-content: space-around;">
+    <div>
+      <h1>Welcome ItSpace</h1>
+      <h2>For Any Qusetion Just Call us: </h2>
+      <h3><u>+379968596857</u></h3>
+    </div>
+    <div >
+      <h1 style="text-align: center;">Registration</h1>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column;" >
+
+        <label style="margin-left: 5px;">NAME:</label>
+        <input type="text" formControlName="userName" placeholder="Input your name" style="margin-left: 5px;">
+
+        <label style="margin-left: 5px;">SURNAME:</label>
+        <input type="text" formControlName="surname" placeholder="Input your surname" style="margin-left: 5px;">
+
+        <label style="margin-left: 5px;">Frofile picture:</label>
+<!--        <input type='file' #uploadInput>-->
+        <!--        <input type="file" name="f" [(ngModel)]="form.resume" observeFiles />-->
+        <input type="file" #uploadInput (change)="onSelectFile($event)" observeFiles  style="margin-left: 5px;">
+<!--        <img [src]="imageUrl" height="100" width="120">-->
+
+        <label style="margin-left: 5px;">TYPE:</label>
+        <input type="text" formControlName="type"  placeholder="Input user type MEMBER or LEADER" style="margin-left: 5px;">
+
+        <label style="margin-left: 5px;">EMAIL:</label>
+        <input type="text" formControlName="email" placeholder="input your email" style="margin-left: 5px;">
+
+        <label style="margin-left: 5px;">PASSWORD</label>
+        <input type="password" formControlName="password" placeholder="input your password" style="margin-left: 5px;">
+        <input type="submit" value="submit"  style="box-shadow: 2px 3px 3px black;width: 70px; height: 40px; margin-bottom: 10px;margin-top: 10px; margin-left: 30px;">
+      </form>
+      <p *ngIf="error" style="color: red;">
+        input correct values
+      </p>
+      <div *ngIf="submitted" style="padding: 10px;" >
+        <p style="font-size: 18px; font-weight: bold; font-style: italic;">You are successfully registrated</p>
+        <a routerLink="/login">Go to this link to login</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
